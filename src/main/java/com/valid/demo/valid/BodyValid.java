@@ -1,6 +1,6 @@
 package com.valid.demo.valid;
 
-import com.valid.demo.reps.RepValidError;
+import com.valid.demo.valid.reps.RepValidError;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 

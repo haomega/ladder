@@ -1,4 +1,4 @@
-package com.valid.demo;
+package com.valid.demo.valid;
 
 import lombok.Data;
 

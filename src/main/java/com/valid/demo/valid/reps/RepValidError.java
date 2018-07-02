@@ -1,4 +1,4 @@
-package com.valid.demo.reps;
+package com.valid.demo.valid.reps;
 
 import lombok.Data;
 

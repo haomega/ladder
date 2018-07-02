@@ -1,8 +1,7 @@
-package com.valid.demo;
+package com.valid.demo.valid;
 
 
-import com.valid.demo.reps.RepValidError;
-import com.valid.demo.valid.BodyValid;
+import com.valid.demo.valid.reps.RepValidError;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
