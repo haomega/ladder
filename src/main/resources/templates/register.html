@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<h2>注册</h2>
+<hr>
+
+<form action="#" th:action="@{/}"  method="post" >
+    <table>
+        <tr>
+            <td>name</td>
+            <td><input type="text" name="name" ></td>
+            <!--Todo:空值处理方法1-->
+            <td th:text="${errors!=null}?${errors.errors.get('name')}" ></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="text" name="password"> </td>
+            <!--Todo:空值处理2-->
+            <td th:if="${errors!=null}" th:text="${errors.errors.get('password')}" ></td>
+        </tr>
+        <tr>
+            <td><button type="submit">register</button> </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
