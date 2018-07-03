@@ -1,32 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+
     <title>register</title>
+
 </head>
 <body>
-<h2>注册</h2>
-<hr>
 
-<form action="#" th:action="@{/}"  method="post" >
-    <table>
-        <tr>
-            <td>name</td>
-            <td><input type="text" name="name" ></td>
-            <!--Todo:空值处理方法1-->
-            <td th:text="${errors!=null}?${errors.errors.get('name')}" ></td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td><input type="text" name="password"> </td>
-            <!--Todo:空值处理2-->
-            <td th:if="${errors!=null}" th:text="${errors.errors.get('password')}" ></td>
-        </tr>
-        <tr>
-            <td><button type="submit">register</button> </td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div class="container">
+        <form action="/" class="form-group" method="post">
+            <h2 class="danger">注册</h2>
+
+            <label for="userName">UserName:</label>
+            <input type="text" id="userName" class="form-control" name="name">
+
+
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" id="password" name="password">
+
+            <label for="kaptcha">验证码</label>
+            <input class="form-control" type="text" id="kaptcha" name="kaptchaId">
+            <img class="img-rounded" src="/kapcha"/>
+        <!--显示验证信息-->
+            <div th:if="${errors!=null}">
+                <div class="alert alert-danger">
+                    <div  th:each="error:${errors.errors}">
+                        <div  th:text="${error.getValue()}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+
+</div>
+
+<!--<form class="form-control" action="#" th:action="@{/}"  method="post" >-->
+    <!--<table>-->
+        <!--<tr>-->
+            <!--<td>name</td>-->
+            <!--<td><input type="text" name="name" ></td>-->
+            <!--&lt;!&ndash;Todo:空值处理方法1&ndash;&gt;-->
+            <!--<td th:text="${errors!=null}?${errors.errors.get('name')}" ></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>password</td>-->
+            <!--<td><input type="text" name="password"> </td>-->
+            <!--&lt;!&ndash;Todo:空值处理2&ndash;&gt;-->
+            <!--<td th:if="${errors!=null}" th:text="${errors.errors.get('password')}" ></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>验证码</td>-->
+            <!--<td><img src="/kapcha" onclick="kaptcha()"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td><button type="submit">register</button> </td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</form>-->
 
 </body>
 </html>

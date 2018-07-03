@@ -1,0 +1,3 @@
+function kaptcha() {
+    location.reload();
+}
