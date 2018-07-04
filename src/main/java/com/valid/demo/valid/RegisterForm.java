@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class RegisterForm {
+    //注意：notempty 和notnull不同
     @NotEmpty(message = "账户不能为空")
     @Size(min = 2,max = 10,message = "名称长度需要在2到10字符之间")
     private String name;

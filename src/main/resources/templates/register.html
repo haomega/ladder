@@ -16,7 +16,7 @@
 <body>
 
 <div class="container">
-    <div class="container">
+
         <form action="/" class="form-group" method="post">
             <h2 class="danger">注册</h2>
 
@@ -29,19 +29,22 @@
 
             <label for="kaptcha">验证码</label>
             <input class="form-control" type="text" id="kaptcha" name="kaptchaId">
-            <img class="img-rounded" src="/kapcha"/>
-        <!--显示验证信息-->
+            <img class="img-rounded" src="/kapcha"/><a href="/">刷新</a><br>
+        <!--显示表单验证结果-->
             <div th:if="${errors!=null}">
                 <div class="alert alert-danger">
-                    <div  th:each="error:${errors.errors}">
+                    <div  th:each="error:${errors}">
                         <div  th:text="${error.getValue()}"></div>
                     </div>
                 </div>
             </div>
+            <div th:if="${kaptcha}!=null">
+
+                <div class="alert alert-danger" th:text="${kaptcha}" ></div>
+            </div>
 
             <button class="btn btn-lg btn-primary" type="submit">Register</button>
         </form>
-    </div>
 
 </div>
 
