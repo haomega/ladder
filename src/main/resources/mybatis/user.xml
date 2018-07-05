@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.valid.demo.dao.UserMapper">
+<insert id="save" parameterType="com.valid.demo.entity.User" keyProperty="id">
+    insert into user (name,password) values (#{name},#{password})
+</insert>
+    <!--User findUserByName(String name);-->
+    <select id="findUserByName" resultType="com.valid.demo.entity.User" parameterType="String">
+        select * from user where name=#{name}
+    </select>
+</mapper>

@@ -1,3 +1,11 @@
 spring:
   thymeleaf:
     cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/valid?useSSL=false
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml

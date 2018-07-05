@@ -1,4 +1,4 @@
-package com.valid.demo.kaptcha;
+package com.valid.demo.dao.dto;
 
 import lombok.Data;
 
