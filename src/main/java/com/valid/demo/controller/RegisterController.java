@@ -8,6 +8,8 @@ import com.valid.demo.service.UserServices;
 import com.valid.demo.valid.BodyValid;
 import com.valid.demo.form.UserForm;
 import com.valid.demo.valid.reps.RepValidError;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,19 +29,25 @@ public class RegisterController extends Kaptcha {
     @Autowired
     UserServices userServices;
 
-//TODO:确定要用uuid做主键？
+    private static final Logger logger = LogManager.getLogger();
+
+//TODO:确定要用uuid做主键?no
     @GetMapping("")
-    public String register(HttpServletRequest req, HttpSession session,HttpServletResponse resp) {
-//        String uuid = UUID.randomUUID().toString();
-        String kapText = super.generateKapText();
-//        CaptchaDto cap = new CaptchaDto(uuid, kapText);
+    public String register(HttpSession session) {
+/*        String uuid = UUID.randomUUID().toString();
+        CaptchaDto cap = new CaptchaDto(uuid, kapText);
+        Cookie cookie = new Cookie("uuid", uuid);
+        resp.addCookie(cookie);*/
         //数据放入session中
+        String kapText = super.generateKapText();
         session.setAttribute("kaptcha",kapText);
-//        Cookie cookie = new Cookie("uuid", uuid);
-//        resp.addCookie(cookie);
         return "register";
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "result";
+    }
 
     //表单验证
     @PostMapping("")
@@ -56,7 +64,6 @@ public class RegisterController extends Kaptcha {
             //验证码验证
             String kaptcha = userForm.getKaptchaId();
             String kapText = (String)session.getAttribute("kaptcha");
-//            String s = cap.getKaptcha();
             if (!kaptcha.equals(kapText)) {
                 mv = new ModelAndView("register");
                 mv.addObject("kaptcha", "验证码输入错误");
@@ -96,12 +103,14 @@ public class RegisterController extends Kaptcha {
         try {
             //生成验证码图片，并输出
             super.kaptcha(req, resp, kapText);
+            logger.info("生成验证码");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    //TODO: Logger配置
     //TODO: token 令牌的使用
-    //TODO: DAO层添加
     //TODO: druid德鲁伊
 
 }

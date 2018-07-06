@@ -8,3 +8,4 @@ public interface UserMapper {
 
     User findUserByName(String name);
 }
+//TODO: 使用generator工具生成Mapper和xml
