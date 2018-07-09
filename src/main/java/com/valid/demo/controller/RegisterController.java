@@ -32,7 +32,7 @@ public class RegisterController extends Kaptcha {
     private static final Logger logger = LogManager.getLogger();
 
 //TODO:确定要用uuid做主键?no
-    @GetMapping("")
+    @GetMapping("/reg")
     public String register(HttpSession session) {
 /*        String uuid = UUID.randomUUID().toString();
         CaptchaDto cap = new CaptchaDto(uuid, kapText);
@@ -50,7 +50,7 @@ public class RegisterController extends Kaptcha {
     }
 
     //表单验证
-    @PostMapping("")
+    @PostMapping("/register")
     public ModelAndView valid(@Valid UserForm userForm, BindingResult result, HttpSession session) {
 
         //表单字段验证

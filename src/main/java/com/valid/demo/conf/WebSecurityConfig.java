@@ -17,19 +17,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/kaptcha")
+                .antMatchers("/kapcha","/reg","/css/*","/js/*")//不会拦截的资源
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/").permitAll().and().logout().permitAll();
+                .loginPage("/reg").permitAll().and().logout().permitAll();//被拦截后的跳转路径
     }
 
     @Bean
     @Override
     protected UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build();
+        UserDetails user = User.withDefaultPasswordEncoder().username("name").password("password").roles("USER").build();
 
         return new InMemoryUserDetailsManager(user);
     }
 }
+//TODO:身份认证待解决，注册完成依旧返回登陆界面
