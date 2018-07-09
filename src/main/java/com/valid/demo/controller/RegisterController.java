@@ -8,6 +8,8 @@ import com.valid.demo.service.UserServices;
 import com.valid.demo.valid.BodyValid;
 import com.valid.demo.form.UserForm;
 import com.valid.demo.valid.reps.RepValidError;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,6 +28,8 @@ public class RegisterController extends Kaptcha {
 
     @Autowired
     UserServices userServices;
+
+    private static final Logger logger = LogManager.getLogger();
 
 //TODO:确定要用uuid做主键？
     @GetMapping("")
@@ -65,7 +69,7 @@ public class RegisterController extends Kaptcha {
             //验证完成后进行删除
             session.removeAttribute("kaptcha");
         }
-        //TODO:持久化
+        //持久化
         userServices.save(userForm);
         User user = userServices.findUserByname(userForm.getName());
 
@@ -76,8 +80,8 @@ public class RegisterController extends Kaptcha {
 
     @GetMapping("/kapcha")
     public void getKapcha(HttpServletRequest req, HttpServletResponse resp,HttpSession session) {
-//TODO:cookie可以去掉了
         String kapText= (String)session.getAttribute("kaptcha");
+        //cookie去除
        /* Cookie[] cookies = req.getCookies();
         String uuid = null ;
         for (Cookie cookie : cookies) {
@@ -88,20 +92,20 @@ public class RegisterController extends Kaptcha {
         //判断uuid
         if (uuid == null || uuid.isEmpty()) {
             return;
-        }*/
-//        String kapText = cap.getKaptcha();
+        }
+        String kapText = cap.getKaptcha();*/
 
         //生成验证码内容
 
         try {
             //生成验证码图片，并输出
             super.kaptcha(req, resp, kapText);
+            logger.info("生成验证码");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     //TODO: token 令牌的使用
-    //TODO: DAO层添加
     //TODO: druid德鲁伊
 
 }
