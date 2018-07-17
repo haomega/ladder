@@ -77,6 +77,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
+        <!-- druid -->
+        <!--<dependency> 暂时不加
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.20</version>
+        </dependency>-->
     </dependencies>
 
     <build>

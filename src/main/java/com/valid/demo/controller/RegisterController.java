@@ -1,7 +1,6 @@
 package com.valid.demo.controller;
 
 
-import com.valid.demo.dao.UserMapper;
 import com.valid.demo.entity.User;
 import com.valid.demo.kaptcha.Kaptcha;
 import com.valid.demo.service.UserServices;
@@ -105,6 +104,7 @@ public class RegisterController extends Kaptcha {
             e.printStackTrace();
         }
     }
+    //TODO: 需求分析，api设计
     //TODO: token 令牌的使用
     //TODO: druid德鲁伊
 

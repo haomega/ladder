@@ -9,3 +9,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+
